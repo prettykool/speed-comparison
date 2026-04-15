@@ -57,6 +57,12 @@
     "tag_filter": "^\\d+\\.\\d+-alpine$",
     "source_file": "leibniz.go"
   },
+  "hare": {
+    "source": "alpine",
+    "package": "hare",
+    "earthfile_pattern": "alpine:(\\d+\\.\\d+)",
+    "source_file": "leibniz.ha"
+  },
   "nim": {
     "source": "alpine",
     "package": "nim",

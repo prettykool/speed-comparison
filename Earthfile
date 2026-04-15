@@ -132,6 +132,7 @@ collect-data:
   BUILD +d
   BUILD +d-ldc
   BUILD +go
+  BUILD +hare
   BUILD +nim
   BUILD +odin
   BUILD +rust
@@ -218,7 +219,7 @@ c:
   DO +SET_ARCH_FLAGS
   RUN --no-cache gcc leibniz.c -o leibniz -O3 -s -static -flto $MARCH_FLAG -mtune=native -fomit-frame-pointer -fno-signed-zeros -fno-trapping-math -fassociative-math
   DO +BENCH --name="c" --lang="C (gcc)" --version="gcc --version" --cmd="./leibniz"
-
+  
 c-clang:
   FROM +alpine --src="leibniz.c"
   RUN apk add --no-cache clang lld build-base
@@ -271,6 +272,13 @@ go:
   DO +ADD_FILES --src="leibniz.go"
   RUN --no-cache go build leibniz.go
   DO +BENCH --name="go" --lang="Go" --version="go version" --cmd="./leibniz"
+
+hare:
+  FROM +alpine --src="leibniz.ha"
+  RUN apk add --no-cache hare build-base
+  DO +SET_ARCH_FLAGS
+  RUN --no-cache hare build -R leibniz.ha 
+  DO +BENCH --name="hare" --lang="Hare" --version="hare version" --cmd="./leibniz"
 
 nim:
   # GCC options: -fno-signed-zeros -fno-trapping-math -fassociative-math allow vectorization

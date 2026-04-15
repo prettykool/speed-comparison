@@ -212,6 +212,17 @@ LANGUAGES: dict[str, Language] = {
         category="systems",
         version_regex=r"go(\d+\.\d+\.?\d*)",
     ),
+    "hare": Language(
+        name="Hare",
+        nixpkgs=("go@0.26.0",),
+        file="leibniz.ha",
+        compile="hare build leibniz.ha",
+        run="./leibniz",
+        version_cmd="hare version",
+        base="hare",
+        category="systems",
+        version_regex=r"hare(\d+\.\d+\.?\d*)",
+    ),
     "odin": Language(
         name="Odin",
         nixpkgs=("odin@2025-11",),
