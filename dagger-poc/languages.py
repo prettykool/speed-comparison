@@ -214,7 +214,7 @@ LANGUAGES: dict[str, Language] = {
     ),
     "hare": Language(
         name="Hare",
-        nixpkgs=("go@0.26.0",),
+        nixpkgs=("hare@0.26.0",),
         file="leibniz.ha",
         compile="hare build leibniz.ha",
         run="./leibniz",
